@@ -26,6 +26,7 @@ import {
   getPortfolioPnL 
 } from './modules/portfolioManager.js';
 import { getSectorHeatmap, scanMarket } from './modules/marketScanner.js';
+import express from "express";
 
 /**
  * MCP Tool Definitions
@@ -267,6 +268,21 @@ async function handleToolCall(name, args) {
     };
   }
 }
+
+/**
+ * Express Server Setup
+ */
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("IndiaQuant MCP Server Running 🚀");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 /**
  * Main server initialization
